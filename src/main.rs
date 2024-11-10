@@ -13,7 +13,13 @@ pub struct Lifetime {
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
+        .add_plugins(DefaultPlugins.set(WindowPlugin {
+            primary_window: Some(Window {
+                title: "Bloom tracing".to_string(),
+                ..Default::default()
+            }),
+            ..Default::default()
+        }))
         .add_systems(Startup, setup)
         .add_systems(Update, cursor::on_cursor_move_event)
         .add_systems(Update, remove_circle_mesh_after_timeout)
